@@ -20,3 +20,33 @@ Given a roman numeral, convert it to an integer.
 
 
 */
+var romanToInt = function(s) {
+    //largest to smallest from left to right
+    //when subtraction is needed, its from from right to left largest to smallest
+    //6 instances of subtraction 
+    //use mode to extract each digit
+    //use map(roman,value) include the subtractions
+    //iterate forward, if value of i <i+1 then convert s[i]+s[i+1] 
+    //let result = 0, + value as iterating through the string
+    let romans = ["I","V","X","L","C","D","M","IV","IX","XL","XC","CD","CM"]
+    let values = [1,5,10,50,100,500,1000,4,9,40,90,400,900]
+    let my_map = new Map()
+    for (let i=0;i<romans.length;i++){
+        my_map.set(romans[i],values[i])
+    }
+    let result = 0
+    for(let i=0;i<s.length;i++){
+        if(my_map.get(s[i])<my_map.get(s[i+1])){
+            let current_roman = s[i]+s[i+1]
+            console.log(current_roman)
+            result += my_map.get(current_roman)
+        }else{
+            result += my_map.get(s[i])
+        }
+    }
+    return result
+
+};
+console.log(romanToInt("MCMXCIV") )//1994
+
+//comment: better to not include the substraction in the map, but to check for it as you iterate through the string

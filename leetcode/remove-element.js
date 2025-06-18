@@ -1,3 +1,7 @@
+/*
+LINK: https://leetcode.com/problems/remove-element/submissions/1667734565
+Runtime beats 100% of users with JavaScript
+*/
 /**
  * @param {number[]} nums
  * @param {number} val
@@ -19,11 +23,6 @@ var removeElement = function(nums, val) {
     count--
    }
    return nums.length
-   
-   
-
-   
-
 };
 // Example usage:
 let nums = [0,1,2,2,3,0,4,2]

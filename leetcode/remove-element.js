@@ -14,8 +14,6 @@ var removeElement = function(nums, val) {
 
    let count = nums.length
    while(count>0){
-    let i = nums.length -1
-    console.log(i)
     let last_num = nums.pop()
     if(last_num!== val){
        nums.unshift(last_num)

@@ -47,7 +47,7 @@ var climbStairs = function(n) {
     // consider all combinations except for when y = n/2 and y=0
     for(let i=1;i<n/2;i++){
         y++
-        result = result+ y*(n-2y)
+        result = result+ y*(n-2*y)
     }
     return result
 

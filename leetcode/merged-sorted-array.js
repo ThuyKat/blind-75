@@ -11,7 +11,7 @@ var merge = function(nums1, m, nums2, n) {
     //iterate m elements of nums1 then n elements of num2 if i >=m
     // compare first 2 element of each array and see if which is smaller that will be taken to write first, remaining then be compared with the next in line 
     if(m==0){
-        nums1[0]=nums2[0]
+        nums1.concat(...nums2)
         return nums1
     }
     if(n==0){
@@ -23,8 +23,7 @@ var merge = function(nums1, m, nums2, n) {
             let dummy = nums1[i]
             nums1[i]= nums2[0]
             nums2[0]=dummy 
-           nums2.sort((a,b)=>a-b) //compares to the Min of nums2
-            console.log(nums2)
+            nums2.sort((a,b)=>a-b) //compares to the Min of nums2
         }
         i++
     }

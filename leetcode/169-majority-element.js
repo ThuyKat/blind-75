@@ -32,3 +32,11 @@ majorityElement(nums);
     //canceled out = 2k >0
     // so lets say we iterate through the array, divide that array into segments. In each segment, similar element to the first will has value +1, diffrent elment will have value -1. Segment ends when accumulated sum = 0. So each segment will have elements that can be canceled out. Lets say before the final segment, we used m majority elements and p non-majority elements. majority elements can have value as 1 or -1, same for non-majority elements. And we have n/2+k-m majority elements and n/2-k-p non majority element left. If first element of final segment is not majority, it will need to have more of the same number to keep it it in the final segment, and it end up with positive sum since final segment has odd elements. Now we need to prove that the starting of final segment cannot be non-majority element. Assum it is non-majority element, then n/2-k-p >n/2+k-m or 2k <m-p.. 2k >0 so m>p. We used more majority elements than non-majority elements before final segment. Is that possible? Lets say for a segment, if we start with majority element, we will have even majority element and non-majoirty element. If we start with non-majority element, we will use either equal or more non-majority, so we always end up using more or equal non-majority elements. So p >= m always. So the first element of final segment has to be majority element. 
     // So we can just iterate through the array, when count =0, we pick the next element as majority candidate, and increase count when we see same element, decrease count when we see different element. In the end, the candidate will be the majority element.
+
+// Lesson learned: 
+/*
+- previous segments used more non-majority elements than majority elements
+- final segment has more majority elements than non-majority elements PLUS final segment has odd number of elements, so it count is always positive.
+- The first element of final segment has to be majority element, otherwise it will exhaust the non-majority elements to form more segments which makes the final no longer final.
+*/
+// This is pure logic problem, deduced by reverse thinking. However from this experience, as long as I can divide the array into 2 category with possitive difference, I can find the statistical mode without sorting. An interesting rule. 

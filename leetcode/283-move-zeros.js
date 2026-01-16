@@ -10,21 +10,17 @@ var moveZeroes = function(nums) {
     while (right<nums.length){
         
         if(nums[left] ==0){
-            if(nums[right]==0){
-                //move right to next number
-                right++
-            }else{
+            if(nums[right]!=0){
                 //move value of right to left position
                 nums[left] = nums[right]
                 nums[right]= 0
                 left ++
-                right++
-                
             }
         }else{
             left++
-            right++
+
         }
+        right++
         
     }
     return nums

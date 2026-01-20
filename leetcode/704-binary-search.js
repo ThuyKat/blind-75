@@ -11,15 +11,7 @@ var search = function(nums, target) {
     //find the middle see if target > middle number
     let len = nums.length/2
     let target_index = Math.floor(len)
-    if(target_index==0 ){
-        if (nums[target_index] !=target){
-            return -1
-        }else{
-            return 0
-        }
-    }  
-
-    
+   
     while(Math.floor(len)>0){
         if(target>nums[target_index]){
             target_index=Math.ceil(target_index+len/2)

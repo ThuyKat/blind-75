@@ -34,7 +34,7 @@ var solution = function(isBadVersion) {
         if(isBadVersion(left)){
             return left
         }else{
-            return left+1
+            return right
         }
     };
 };

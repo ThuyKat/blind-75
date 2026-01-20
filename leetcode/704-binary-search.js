@@ -35,3 +35,20 @@ console.log(search(nums, 9))
 //what's wrong with my code?
 //when len is less than 1, Math.floor(len) = 0, so target_index will not change anymore
 //need to add a check for that
+
+//popular approach with binary search
+var search = function(nums, target) {
+    let left = 0
+    let right = nums.length - 1
+    while(left <= right){
+        let middle = left + Math.floor((right - left) / 2)
+        if(nums[middle] === target){
+            return middle
+        }else if(nums[middle] < target){
+            left = middle + 1
+        }else{
+            right = middle - 1
+        }
+    }
+    return -1
+}

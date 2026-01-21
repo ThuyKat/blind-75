@@ -13,7 +13,6 @@ var isValid = function(s) {
             open.push(s[i])
         }else{
             let open_str = open.pop()
-            console.log(open_str)
             if(open_str+s[i] =="()"||open_str+s[i] == "[]" || open_str+s[i] =="{}"){
                 continue
             }else{

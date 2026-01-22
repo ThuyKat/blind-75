@@ -45,4 +45,70 @@ var lastStoneWeight = function(stones) {
     // If somehow two remain, smash once more
     return all[all.length - 1] - all[all.length - 2];   
 };
-console.log(lastStoneWeight(stones))
+// console.log(lastStoneWeight(stones))
+// Heap approach: 
+/**
+ * @param {number[]} stones
+ * @return {number}
+ */
+var lastStoneWeight2 = function(stones) {
+    let bubbleDown = function(idx){
+        while(true){
+            let left_child = 2*idx+1
+            let right_child = 2*idx+2
+            let max_index =idx
+            //find max in i, left_child,right_child and place in i
+            if(left_child<stones.length && stones[left_child]>stones[max_index]){
+                max_index=left_child
+            }
+            if(right_child<stones.length && stones[right_child]>stones[max_index]){
+                max_index=right_child
+            }
+            if (max_index === idx) break;
+            [stones[idx], stones[max_index]]=[stones[max_index],stones[idx]]
+            idx=max_index
+        }
+    }
+    let bubbleUp= function(idx){
+        while(idx>0){ // idx must >=1 to be in bound
+            let max_index=Math.floor((idx-1)/2)
+            // if(stones[max_index]<stones[idx]){
+            //     max_index=idx
+            // }// no need to compare to sibblings because sibblings will surely <parent
+            if(stones[max_index]>=stones[idx]){
+                break
+            }
+            [stones[idx], stones[max_index]]=[stones[max_index],stones[idx]]
+            idx=max_index
+        }
+    }
+
+    let max_extract = function(stones){
+        if(stones.length ==1){
+            return stones.pop()
+        }
+        let max = stones[0]
+        let last_index = stones.pop()
+        stones[0] = last_index
+        bubbleDown(0)
+        return max
+    }
+    //get max using max-heap
+    //start from last parent
+    let last_parent = Math.floor((stones.length-2)/2)
+    for(let i = last_parent;i>=0;i--){
+        let idx=i
+        bubbleDown(idx)  
+    }
+    while(stones.length>1){
+        let max1 = max_extract(stones) //length reduces by 1
+        let max2 = max_extract(stones) //length reduces by 1
+        let diff = max1-max2
+        if(diff !=0){
+            stones.push(diff)
+            bubbleUp(stones.length-1)
+        }   
+    }
+    return stones[0]||0
+};
+console.log(lastStoneWeight2(stones))

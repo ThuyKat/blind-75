@@ -13,17 +13,17 @@ return false;
 let collections = ["[]", "()", "{}"];
 let i = 0;
 while (str.length > 0 && i < Math.floor(str.length / 2)) {
-let leftBracket = str[i];
-let rightBracket = str[i + 1];
-let thePair = leftBracket + rightBracket;
-if (collections.includes(thePair)) {
-    str = str.slice(0, i) + str.slice(i + 2);
-    if (i > 0) {
-    i--;
+    let leftBracket = str[i];
+    let rightBracket = str[i + 1];
+    let thePair = leftBracket + rightBracket;
+    if (collections.includes(thePair)) {
+        str = str.slice(0, i) + str.slice(i + 2);
+        if (i > 0) {
+        i--;
+        }
+    } else {
+        i++;
     }
-} else {
-    i++;
-}
 }
 if (str.length > 0) {
 return false;

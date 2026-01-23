@@ -790,3 +790,7 @@ Math.multiplyExact(a, 2);             // Safe multiplication
 
 > 💡 **Interview tip:** "Add two numbers without using `+`" is a classic bit manipulation question (LeetCode 371). The answer uses `^`, `&`, and `<<` together!
 
+![alt text](image.png)
+![alt text](image-1.png)
+![alt text](image-2.png)
+![alt text](image-3.png)

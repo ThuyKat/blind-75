@@ -19,3 +19,10 @@ var countBits = function(n) {
     }
     return result.slice(0, n + 1);
 };
+// var countBits = function(n) {
+//     let bits = new Array(n+1).fill(0);
+//     for(let i = 1; i <= n; i++) {
+//         bits[i] = bits[i>>1] + (i&1);
+//     }
+//     return bits;
+// };

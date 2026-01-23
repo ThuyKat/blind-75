@@ -74,6 +74,50 @@ Original -16:     1111 1111 1111 1111 1111 1111 1111 0000
 int color = 0xFF5733;           // RGB color
 int red = (color >>> 16) & 0xFF; // Extract red component
 ```
+`color = 0xFF5733` packs RGB values into **24 bits** of a 32-bit integer like this:
+
+```
+0xFF5733 = 11111111 01010111 00110011
+  [24 unused]   FF      57      33
+                ↑Red    ↑Green  ↑Blue
+```
+
+## Step-by-Step Breakdown
+
+**`(color >>> 16)`** shifts **right 16 bits** (red component moves to lowest 8 bits):
+```
+Before: 11111111 01010111 00110011
+After >>>16:     00000000 00000000 11111111
+                           ↑ Red = 0xFF = 255
+```
+
+**`& 0xFF`** masks to **keep only lowest 8 bits** (clears everything else):
+```
+11111111 & 11111111 = 11111111 = 255 (red value)
+```
+
+## Same for Other Colors
+```javascript
+int green = (color >>> 8)  & 0xFF;  // Shift 8 → mask 8 bits
+int blue  = (color >>> 0)  & 0xFF;  // No shift → mask 8 bits
+```
+
+**Why `>>>` not `>>`?** `>>>` is **unsigned right shift** (fills with zeros). `>>` is signed (sign-extends), which corrupts colors. [stackoverflow](https://stackoverflow.com/questions/23211603/why-do-we-use-to-get-colour-values-from-rgb)
+
+## Visual Trace
+```
+Original: FF 57 33
+>>>16:      FF
+& 0xFF:   FF (255 red)
+
+>>>8:        57
+& 0xFF:   57 (87 green) 
+
+>>>0:        33  
+& 0xFF:   33 (51 blue)
+```
+
+This packs **3 bytes RGB → 1 int** for efficient storage/transmission. [stackoverflow](https://stackoverflow.com/questions/19277010/bit-shift-and-bitwise-operations-to-encode-rgb-values)
 
 **2. Hash code calculations**
 ```java

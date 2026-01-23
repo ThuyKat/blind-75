@@ -1,4 +1,11 @@
 
+The four essential XOR properties:
+
+Same numbers XOR to zero: a ^ a = 0
+XOR with zero returns original: a ^ 0 = a
+Commutative: a ^ b = b ^ a
+Associative: (a ^ b) ^ c = a ^ (b ^ c)
+
 # Java Bitwise Operations Cheat Sheet
 
 ## 1. Decimal to Binary Conversion

@@ -19,3 +19,17 @@ var addDigits = function(num) {
         }
     return num
 };
+
+//OTHER SOLUTION:
+/**
+ * @param {number} num
+ * @return {number}
+ */
+var addDigits = function(num) {
+let sumDigit = 0
+    while(num>=10){
+        sumDigit = 1+(num-1)%9
+        num = sumDigit
+    }
+    return num
+};

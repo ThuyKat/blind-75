@@ -807,3 +807,5 @@ Math.multiplyExact(a, 2);             // Safe multiplication
 - & : returns 1 when both are 1 (1-1) --> it shows the position where carry happens
 - | : OR or Inclusive OR - returns 1 when either are 1 (1-0, 0-1, 1-1) 
 - ^: XOR or Exclusive OR-  returns 1 where both are different (1-0, 0-1) --> its like adding bits but missing the carry. 
+- x & y, x | y, x ^ y, ~x, x << k, x >> k, x >>> k
+→ JS applies ToInt32 (or ToUint32 for >>>), does the bitwise op on 32 bits, then returns a Number. This is different when x.toString(2) --> this returns the shortest representation of bits so it truncate all leading 0. To convert it back to 32 bits, we use .padStart(targeted-length,filling-value) such as .padStart(32,0)

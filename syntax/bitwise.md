@@ -220,7 +220,7 @@ In two's complement representation:
 - `0` = positive number
 - `1` = negative number
 
-### Converting a Negative Binary Number
+### Converting a Negative Binary Number to Positive/Decimal
 
 **Example:** `1111 1000`
 
@@ -801,3 +801,9 @@ Math.multiplyExact(a, 2);             // Safe multiplication
 ![alt text](image-1.png)
 ![alt text](image-2.png)
 ![alt text](image-3.png)
+
+
+# NOTE TO REMEMBER
+- & : returns 1 when both are 1 (1-1) --> it shows the position where carry happens
+- | : returns 1 when either are 1 (1-0, 0-1, 1-1) 
+- ^ returns 1 where both are different (1-0, 0-1) --> its like adding bits but missing the carry. 

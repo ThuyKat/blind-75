@@ -805,5 +805,5 @@ Math.multiplyExact(a, 2);             // Safe multiplication
 
 # NOTE TO REMEMBER
 - & : returns 1 when both are 1 (1-1) --> it shows the position where carry happens
-- | : returns 1 when either are 1 (1-0, 0-1, 1-1) 
-- ^ returns 1 where both are different (1-0, 0-1) --> its like adding bits but missing the carry. 
+- | : OR or Inclusive OR - returns 1 when either are 1 (1-0, 0-1, 1-1) 
+- ^: XOR or Exclusive OR-  returns 1 where both are different (1-0, 0-1) --> its like adding bits but missing the carry. 

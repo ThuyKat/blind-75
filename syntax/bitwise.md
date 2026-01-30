@@ -809,3 +809,64 @@ Math.multiplyExact(a, 2);             // Safe multiplication
 - ^: XOR or Exclusive OR-  returns 1 where both are different (1-0, 0-1) --> its like adding bits but missing the carry. 
 - x & y, x | y, x ^ y, ~x, x << k, x >> k, x >>> k
 → JS applies ToInt32 (or ToUint32 for >>>), does the bitwise op on 32 bits, then returns a Number. This is different when x.toString(2) --> this returns the shortest representation of bits so it truncate all leading 0. To convert it back to 32 bits, we use .padStart(targeted-length,filling-value) such as .padStart(32,0)
+
+# PRESENTATION OF NEGATIVE NUMBER IN JS
+
+1. Internal representation (bitwise operators)
+- Inside the engine, for bitwise ops, JS uses 32‑bit two’s‑complement signed integers:
+
+- Negative numbers do have a sign bit internally (MSB = 1).
+
+- Example for −6 internally: 11111111111111111111111111111010.
+
+- So the sign is stored as a bit, exactly like in standard two’s complement.
+
+2. What toString(2) shows you
+- Number.prototype.toString(2) does not dump the raw 32 bits. It prints the mathematical integer in base 2, using:
+
+- A leading - character for negative numbers.
+
+- Then the binary digits of the absolute value with no leading zeros.
+
+- Examples:
+
+```js
+(5).toString(2)    // "101"
+(-6).toString(2)   // "-110"
+```
+- So your impression is correct about the printed form:
+
+- JS’s binary string representation never shows a sign bit; it uses - like normal decimal.
+
+- The “leading 0” you sometimes see is only when you padded it (e.g. padStart) or when the number happens to need that bit.
+
+3. Seeing the actual 32‑bit pattern
+- If you want to see the internal two’s‑complement bits (including the sign bit):
+
+```js
+let x = -6;
+let bits = (x >>> 0).toString(2).padStart(32, '0');
+console.log(bits); 
+// 11111111111111111111111111111010
+```
+- >>> 0 forces the value to be treated as an unsigned 32‑bit int, so toString(2) prints all 32 bits.
+
+- So:
+
+Internally: sign is a bit (two’s complement).
+
+Externally (with .toString(2)): sign is shown as - plus a normal binary magnitude string.
+
+# PATTERNS TO REMEMBER:
+1. Flipping bits
+- ^ turns 1 to 0 and 0 to 1, hence it has bit flipping effect apart from "adding bits but missing the carry" impression
+2. Counting 1s
+- & returns 1 when both are 1 so we shift number to the right and &1 to find out if number in that position is indeed 1. If yes, we increment count. 
+3. Find the missing number
+- ^ returns 0 when 2 number are same. So we take XOR of nums[i]^(i) when we want to find the missing number
+4. Create string of 1s with n length
+- This is for masking purpose
+- Formular: (1<<n)-1
+5. Trimming leading 0
+- n.toString(2), shortest binary presentation of n, it excludes all leading 0s
+- However when we invert n with ~, this will result in negative number signed with leading "-". To return the correct binary form without leading "-", we need to convert it to 32 bits format using >>>0 -  the unsigned right shift. (x >>> 0).toString(2) convert that unsigned integer to a binary string so there is no leading "-". 

@@ -4,6 +4,8 @@
  */
 var maxSubArray = function(nums) {
     //return the largest sum of contiguous subarray
+    //iterate and calculate sum until sum <0 then reset sum =0 and start again
+     //this way we always start sum with a positive number and keeps going until sum <0 while still get the subarray that has max sum in that round. 
     let maxSum = nums[0];
     let currentSum = 0;
     for (let num of nums) {

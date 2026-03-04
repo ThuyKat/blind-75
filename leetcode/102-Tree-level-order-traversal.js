@@ -27,3 +27,4 @@ var levelOrder = function (root) {
   dfs(root, 0);
   return result;
 };
+//Note( not relevant to the question but good to know): Array.from({length:n},(_,i)=>I) will create an array of n length and fill numbers from 1 to n.

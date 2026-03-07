@@ -10,6 +10,7 @@
  * @param {TreeNode} root
  * @return {number}
  */
+//DFS approach: go to the end, calculate depth of each possibility (explicitly by recursion) then compare
 var minDepth = function (root) {
   if (!root) {
     return 0;

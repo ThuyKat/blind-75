@@ -13,7 +13,7 @@
  */
 var isSameTree = function (p, q) {
   //return true if p and q are identical binary tree and false if otherwise
-  //BFS
+  //DFS
   //both null, returns true
   //   if (!p && !q) {
   //     return true;

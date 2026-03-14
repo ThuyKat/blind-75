@@ -11,6 +11,9 @@
  * @param {number} targetSum
  * @return {boolean}
  */
+//calculate sum, but result can be sum of current to value on the left or value on the right
+// only boolean is the return result of the recursive function
+//got to validate the sum at the leaf when root.left and root.right are both null
 
 var hasPathSum = function (root, targetSum) {
   //any root-to-leaf that sumup to targetSum?true:false

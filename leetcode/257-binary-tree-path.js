@@ -13,18 +13,26 @@
 
 var binaryTreePaths = function (root) {
   //return an array  of string, node value separated by the arrow, dont include null
+  //go from root to next node if root.left not null and root.right null, goes to root.left, if root.left null and root.right not null go to right node , if both are null it's the last node of the current string, push the current path into result array.
+  //
   let result = [];
-  const dfs = (node, path) => {
-    if (!node) return;
-    path += node.val;
+  var pathString = (node, path = '') => {
+    if (!node) {
+      return;
+    }
+    path = path + node.val;
     if (!node.left && !node.right) {
       result.push(path);
-    } else {
-      dfs(node.left, path + '->');
-      dfs(node.right, path + '->');
+    }
+    if (node.left && !node.right) {
+      pathString(node.left);
+    } else if (!node.left && node.right) {
+      pathString(node.right);
+    } else if (node.left && node.right) {
+      pathString(node.left);
+      pathString(node.right);
     }
   };
-
-  dfs(root, '');
+  pathString(root);
   return result;
 };

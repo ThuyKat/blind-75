@@ -23,12 +23,12 @@ var binaryTreePaths = function (root) {
     path = path + node.val;
 
     if (node.left && !node.right) {
-      pathString(node.left);
+      pathString(node.left, path + '->');
     } else if (!node.left && node.right) {
-      pathString(node.right);
+      pathString(node.right, path + '->');
     } else if (node.left && node.right) {
-      pathString(node.left);
-      pathString(node.right);
+      pathString(node.left, path + '->');
+      pathString(node.right, path + '->');
     } else {
       result.push(path);
     }

@@ -21,9 +21,7 @@ var binaryTreePaths = function (root) {
       return;
     }
     path = path + node.val;
-    if (!node.left && !node.right) {
-      result.push(path);
-    }
+
     if (node.left && !node.right) {
       pathString(node.left);
     } else if (!node.left && node.right) {
@@ -31,6 +29,8 @@ var binaryTreePaths = function (root) {
     } else if (node.left && node.right) {
       pathString(node.left);
       pathString(node.right);
+    } else {
+      result.push(path);
     }
   };
   pathString(root);

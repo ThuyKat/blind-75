@@ -14,7 +14,7 @@
 var binaryTreePaths = function (root) {
   //return an array  of string, node value separated by the arrow, dont include null
   //go from root to next node if root.left not null and root.right null, goes to root.left, if root.left null and root.right not null go to right node , if both are null it's the last node of the current string, push the current path into result array.
-  //
+  //path is passed because incase of last node, we don't add the arrow string. Arrow string only added everytime we call pathString function to add a new node. Path should be passed to pathString as an argument because it should not be reset to "" until we reach to the leaf.
   let result = [];
   var pathString = (node, path = '') => {
     if (!node) {
